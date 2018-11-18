@@ -2,3 +2,18 @@
     width: 550px;
     position: relative;
 }
+
+.filters {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.filter-row {
+    margin-bottom: 20px;
+}
+
+.filter-label {
+    text-align: left;
+    line-height: 37px;
+}

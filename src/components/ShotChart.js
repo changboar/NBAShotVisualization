@@ -10,12 +10,13 @@ window.d3_hexbin = {hexbin : hexbin}; // workaround library problem
 export class ShotChart extends React.Component {
   static propTypes = {
     playerId: PropTypes.number.isRequired,
+    minCount: PropTypes.number.isRequired,
   }
 
   componentDidUpdate() {
     nba.stats.shots({
       PlayerID: this.props.playerId,
-      Season: '2015-16',
+      Season: '2016-17',
     }).then((response) => {
       const final_shots = response.shot_Chart_Detail.map(shot => ({
         x: (shot.locX + 250) / 10,
