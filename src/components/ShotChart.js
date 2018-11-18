@@ -11,6 +11,7 @@ export class ShotChart extends React.Component {
   static propTypes = {
     playerId: PropTypes.number.isRequired,
     minCount: PropTypes.number.isRequired,
+    chartType: PropTypes.string.isRequired,
   }
 
   componentDidUpdate() {
@@ -18,6 +19,7 @@ export class ShotChart extends React.Component {
       PlayerID: this.props.playerId,
       Season: '2016-17',
     }).then((response) => {
+      console.log(response);
       const final_shots = response.shot_Chart_Detail.map(shot => ({
         x: (shot.locX + 250) / 10,
         y: (shot.locY + 50) / 10,
@@ -32,11 +34,12 @@ export class ShotChart extends React.Component {
       const chart_shots = shots()
         .shotRenderThreshold(this.props.minCount)
         .displayToolTips(true)
-        .displayType("hexbin");
+        .displayType(this.props.chartType);
       courtSelection.call(chart_court);
       courtSelection.datum(final_shots).call(chart_shots);
     });
   }
+
   render() {
     return (
       <div id="shot-chart"></div>
